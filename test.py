@@ -118,3 +118,7 @@ print("Villes = ", res.cities)
 #                print(res)
 
 #print(bow)
+
+### identifier les mots qui corespondent à des métiers 
+### analyse de similitude 
+### 
