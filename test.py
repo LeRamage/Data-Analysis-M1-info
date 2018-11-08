@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Oct 31 22:22:41 2018
-
-@author: Ryan
 """
 from geotext import GeoText
 import nltk
@@ -32,7 +30,7 @@ book = open("C:/Users/Ryan/Downloads/chap1.txt","r")
 
 
 #Etape 1 = Trouver les mots qui commencent par une majuscule
-bow = list()
+bow       = list()
 majuscule = list()
 
 # Tranformer le texte en une liste de mots
@@ -49,13 +47,13 @@ print(majuscule)
 
 
 #Enlever les stopword             
-clean_Min = [w.lower() for w in majuscule]
+clean_Min      = [w.lower() for w in majuscule]
 filtered_words = []    
 for word in clean_Min :
     if word not in stop_word and word.isalpha() and len(word) > 3 :
             filtered_words.append(word)
 
-filtered_words_plus =[]
+filtered_words_plus = []
 for word in filtered_words :
     if word not in raw_stopword_list and word.isalpha() and len(word) > 3 :
             filtered_words_plus.append(word)
@@ -64,7 +62,7 @@ print(filtered_words_plus)
 
 #Stemm = (Es-ce utile ?)
 stemmed_words = []
-stemmer = FrenchStemmer()
+stemmer       = FrenchStemmer()
 for word in filtered_words :
     stemmed_word=stemmer.stem(word) #stem the word
     stemmed_words.append(stemmed_word)    
@@ -72,7 +70,7 @@ for word in filtered_words :
 print(stemmed_words)
 
 #Etape 2 = Classe grammatical des mots
-data= []
+data = []
 for word in filtered_words_plus:
     data = data + nltk.pos_tag(nltk.word_tokenize(word, language = 'french'))
 print(data)
@@ -105,7 +103,7 @@ print(entity_fr)
 
 ville = nom_propres
 ville = ' '.join(majuscule)
-res = GeoText(ville)
+res   = GeoText(ville)
 print("Pays = ",res.country_mentions)
 print("-----------------------------------")
 print("Villes = ", res.cities)
